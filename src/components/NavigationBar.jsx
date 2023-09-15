@@ -15,8 +15,8 @@ const StyledLink = styled(Link)`
 `;
 
 const Logo = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 120px;
+  height: 120px;
   margin-left: 1rem;
 `;
 
@@ -25,10 +25,11 @@ const NavigationBar = () => {
     <Header>
       <Link to={HOME_PATH}>
         <Logo
-          src="https://seeklogo.com/images/F/facebook-marketplace-logo-46A976DABC-seeklogo.com.png"
+          src="https://ar.happyvalentinesday2020.online/pics/static.vecteezy.com/system/resources/previews/000/588/267/original/retro-car-logo-template-design-vintage-logo-style-vector.jpg"
           alt="logo"
         />
       </Link>
+      <h1>AUTORETRO</h1>
       <nav>
         {topNavigationItems.map((navItem) => (
           <StyledLink key={navItem.path} to={navItem.path}>
