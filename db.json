@@ -1,0 +1,24 @@
+{
+    "todos": [
+      {
+        "id": 1,
+        "title": "Learn json-server",
+        "completed": false
+      },
+      {
+        "id": 1694623997586,
+        "completed": false,
+        "title": "Learn async await"
+      },
+      {
+        "id": 1694624034063,
+        "completed": false,
+        "title": "Learn react"
+      },
+      {
+        "id": 1694624051683,
+        "completed": false,
+        "title": "dad"
+      }
+    ]
+  }
