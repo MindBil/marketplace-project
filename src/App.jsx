@@ -1,16 +1,12 @@
-import FormikTodo from "./FormikTodo";
-import FormikValidate from "./FormikValidate";
-import FormikYup from "./FormikYup";
-import Todos from "./Todos";
+import NavigationBar from "./components/NavigationBar";
+import AppRoutes from "./routes/AppRoutes";
 
 const App = () => {
   return (
-    <div>
-      <Todos />
-      <FormikTodo />
-      <FormikValidate />
-      <FormikYup />
-    </div>
+    <>
+      <NavigationBar />
+      <AppRoutes />
+    </>
   );
 };
 
