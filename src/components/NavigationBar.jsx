@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HOME_PATH, topNavigationItems } from "../routes/const";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+import { BiLogOut } from "react-icons/bi";
 
 const Header = styled.header`
   display: flex;
@@ -10,33 +13,54 @@ const Header = styled.header`
   border-bottom: 1px solid lightgray;
 `;
 
-const StyledLink = styled(Link)`
+const Logo = styled.img`
+  width: 48px;
+  height: 48px;
   margin-left: 1rem;
 `;
 
-const Logo = styled.img`
-  width: 120px;
-  height: 120px;
-  margin-left: 1rem;
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const LogoutIcon = styled(BiLogOut)`
+  cursor: pointer;
+  color: grey;
+`;
+
+const Name = styled.span`
+  font-weight: 500;
 `;
 
 const NavigationBar = () => {
+  const { user, isLoggedIn, handleLogout } = useContext(UserContext);
+
   return (
     <Header>
       <Link to={HOME_PATH}>
         <Logo
-          src="https://ar.happyvalentinesday2020.online/pics/static.vecteezy.com/system/resources/previews/000/588/267/original/retro-car-logo-template-design-vintage-logo-style-vector.jpg"
+          src="https://seeklogo.com/images/F/facebook-marketplace-logo-46A976DABC-seeklogo.com.png"
           alt="logo"
         />
       </Link>
-      <h1>AUTORETRO</h1>
-      <nav>
-        {topNavigationItems.map((navItem) => (
-          <StyledLink key={navItem.path} to={navItem.path}>
-            {navItem.title}
-          </StyledLink>
-        ))}
-      </nav>
+      <Nav>
+        {topNavigationItems.map(
+          (navItem) =>
+            !(navItem.hideOnAuth && isLoggedIn) && (
+              <Link key={navItem.path} to={navItem.path}>
+                {navItem.title}
+              </Link>
+            )
+        )}
+        {isLoggedIn && (
+          <>
+            <Name>{user.email}</Name>
+            <LogoutIcon fontSize={24} onClick={handleLogout} />
+          </>
+        )}
+      </Nav>
     </Header>
   );
 };

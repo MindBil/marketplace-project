@@ -29,9 +29,7 @@ const Register = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const { email, password } = values;
-      const newUser = { id: Date.now(), email, password };
-      await registerUser(newUser);
+      await registerUser(values);
       navigate(LOGIN_PATH);
     } catch (error) {
       console.error(error);

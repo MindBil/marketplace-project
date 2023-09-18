@@ -14,6 +14,11 @@ const StyledLabel = styled.label`
   color: #333;
 `;
 
+const Optional = styled.span`
+  color: grey;
+  font-size: 0.9rem;
+`;
+
 const StyledField = styled(Field)`
   width: 100%;
   padding: 0.5rem 1rem;
@@ -35,10 +40,12 @@ const StyledError = styled(ErrorMessage)`
   font-size: 0.875rem;
 `;
 
-const FormikField = ({ name, label, ...props }) => {
+const FormikField = ({ name, label, optional, ...props }) => {
   return (
     <FieldContainer>
-      <StyledLabel htmlFor={name}>{label}</StyledLabel>
+      <StyledLabel htmlFor={name}>
+        {label} {optional && <Optional>(optional)</Optional>}{" "}
+      </StyledLabel>
       <StyledField id={name} name={name} {...props} />
       <StyledError component="div" name={name} />
     </FieldContainer>
@@ -48,7 +55,7 @@ const FormikField = ({ name, label, ...props }) => {
 FormikField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  // If there are other specific props you want to type-check, add them here.
+  optional: PropTypes.bool,
 };
 
 export default FormikField;

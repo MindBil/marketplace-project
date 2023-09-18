@@ -13,7 +13,7 @@ export const registerUser = async (user) => {
 
 export const loginUser = async (loggingUser) => {
   const response = await fetchUsers();
-  const userExists = (user) =>
+  const existingUser = (user) =>
     user.email === loggingUser.email && user.password === loggingUser.password;
-  return response.some(userExists);
+  return response.find(existingUser);
 };
