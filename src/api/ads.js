@@ -6,8 +6,19 @@ export const fetchAds = async () => {
   return response.data;
 };
 
+export const fetchAd = async (id) => {
+  const response = await axios.get(`${API}/ads/${id}`);
+  return response.data;
+};
+
 export const createAd = async (ad) => {
   const response = await axios.post(`${API}/ads`, ad);
+  return response.data;
+};
+
+export const updateAd = async (ad) => {
+  const { id, ...rest } = ad;
+  const response = await axios.put(`${API}/ads/${id}`, rest);
   return response.data;
 };
 

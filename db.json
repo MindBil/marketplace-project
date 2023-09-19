@@ -17,12 +17,20 @@
       "userId": 1694710338964
     },
     {
-      "title": "test",
-      "description": "",
+      "title": "Rokas",
+      "description": "test me",
       "imageUrl": "https://images.fineartamerica.com/images-medium-large/euro-currency-symbol-in-focus-bjorn-holland.jpg",
       "price": 10,
       "userId": 1695049797854,
       "id": 3
+    },
+    {
+      "title": "Drone",
+      "description": "blablabla",
+      "imageUrl": "https://www.easa.europa.eu/sites/default/files/inline-images/Drones-strategy-2.0-FEATURED-image-LIGHT.png",
+      "price": 150,
+      "userId": 1695049797855,
+      "id": 4
     }
   ],
   "users": [
@@ -35,6 +43,12 @@
       "id": 1695049797854,
       "email": "test@gmail.com",
       "password": "testtest"
+    },
+    {
+      "email": "mind@gmail.com",
+      "password": "testing1",
+      "repeatedPassword": "testing1",
+      "id": 1695049797855
     }
   ]
 }

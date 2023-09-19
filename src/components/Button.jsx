@@ -21,7 +21,7 @@ const StyledButton = styled.button`
   }
 
   ${(props) =>
-    props.primary &&
+    props.$primary &&
     `
     background-color: #4CAF50;
     &:hover {
@@ -30,7 +30,7 @@ const StyledButton = styled.button`
   `}
 
   ${(props) =>
-    props.secondary &&
+    props.$secondary &&
     `
     background-color: #f44336;
     &:hover {
@@ -41,7 +41,7 @@ const StyledButton = styled.button`
 
 const Button = ({ primary, secondary, children, ...props }) => {
   return (
-    <StyledButton primary={primary} secondary={secondary} {...props}>
+    <StyledButton $primary={primary} $secondary={secondary} {...props}>
       {children}
     </StyledButton>
   );
