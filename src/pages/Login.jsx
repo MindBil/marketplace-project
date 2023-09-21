@@ -6,7 +6,8 @@ import FormikField from "../components/FormikField";
 import Button from "../components/Button";
 import { loginUser } from "../api/users";
 import { HOME_PATH } from "../routes/const";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 const Container = styled.div`
   max-width: 500px;
@@ -31,14 +32,19 @@ const Error = styled.p`
 `;
 
 const Login = () => {
+  const { setUser } = useContext(UserContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
       const response = await loginUser(values);
-      setError(!response ? "User email or password is incorrect" : "");
-      navigate(HOME_PATH);
+      if (response) {
+        setUser(response);
+        navigate(HOME_PATH);
+      } else {
+        setError("User email or password is incorrect");
+      }
     } catch (error) {
       console.error(error);
     }
