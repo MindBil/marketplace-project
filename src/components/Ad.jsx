@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Button from "./Button";
+import { UserContext } from "../contexts/UserContext";
 
 const Container = styled.div`
   display: flex;
@@ -21,29 +24,49 @@ const Image = styled.img`
 `;
 
 const Info = styled.div`
-  width: 50%;
+  width: 60%;
   padding: 0.5rem;
+`;
+
+const Actions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  width: 10%;
 `;
 
 const Price = styled.p`
   color: orange;
   font-size: 2rem;
   align-self: center;
-  width: 30%;
+  width: 10%;
   text-align: right;
 `;
 
-const Ad = ({ ad }) => {
-  const { title, description, image_url, price } = ad;
+const Ad = ({ ad, handleDelete }) => {
+  const { title, description, imageUrl, price } = ad;
+  const { user } = useContext(UserContext);
+
   return (
     <Container>
       <ImageContainer>
-        <Image src={image_url} alt={title} />
+        <Image src={imageUrl} alt={title} />
       </ImageContainer>
       <Info>
         <h2>{title}</h2>
         <p>{description}</p>
       </Info>
+      <Actions>
+        {user && user.id === ad.userId && (
+          <>
+            <Button primary>Edit</Button>
+            <Button secondary onClick={handleDelete}>
+              Delete
+            </Button>
+          </>
+        )}
+      </Actions>
       <Price>€{price}</Price>
     </Container>
   );
@@ -51,11 +74,14 @@ const Ad = ({ ad }) => {
 
 Ad.propTypes = {
   ad: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    userId: PropTypes.number.isRequired,
   }),
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default Ad;

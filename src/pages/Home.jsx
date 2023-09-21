@@ -3,11 +3,18 @@ import styled from "styled-components";
 import { Link, useNavigate, generatePath } from "react-router-dom";
 import { fetchAds } from "../api/ads";
 import AdCard from "../components/AdCard";
+<<<<<<< HEAD
 import { NEW_AD_PATH, EDIT_AD_PATH } from "../routes/const";
 import { deleteAd } from "../api/ads";
 import { UserContext } from "../contexts/UserContext";
 import { toast } from "react-toastify";
 import { TextField, Button, Typography } from "@mui/material";
+=======
+import Button from "../components/Button";
+import { NEW_AD_PATH, EDIT_AD_PATH } from "../routes/const";
+import { deleteAd } from "../api/ads";
+import { UserContext } from "../contexts/UserContext";
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
 
 const Container = styled.div`
   max-width: 1100px;
@@ -28,6 +35,7 @@ const StyledAd = styled.div`
 const Home = () => {
   const { isLoggedIn } = useContext(UserContext);
   const [ads, setAds] = useState([]);
+<<<<<<< HEAD
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -35,6 +43,10 @@ const Home = () => {
     ? ads.filter((ad) => ad.title.toLowerCase().includes(search.toLowerCase()))
     : ads;
 
+=======
+  const navigate = useNavigate();
+
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
   const getAds = () => {
     fetchAds()
       .then((response) => setAds(response))
@@ -63,15 +75,21 @@ const Home = () => {
     try {
       await deleteAd(id);
       setAds((prevAds) => prevAds.filter((ad) => ad.id !== id));
+<<<<<<< HEAD
       toast.success("Ad deleted successfully");
     } catch (error) {
       console.error(error);
       toast.error("Ad was not deleted. Try again later");
+=======
+    } catch (error) {
+      console.error(error);
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
     }
   };
 
   return (
     <Container>
+<<<<<<< HEAD
       <TextField
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -79,10 +97,13 @@ const Home = () => {
         placeholder="Search"
         sx={{ width: 400, mb: 2 }}
       />
+=======
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
       <ActionBar>
         <h2>Marketplace</h2>
         {isLoggedIn && (
           <Link to={NEW_AD_PATH}>
+<<<<<<< HEAD
             <Button variant="contained">Add ad</Button>
           </Link>
         )}
@@ -100,6 +121,21 @@ const Home = () => {
       ) : (
         <Typography variant="overline">No ads found...</Typography>
       )}
+=======
+            <Button>Add ad</Button>
+          </Link>
+        )}
+      </ActionBar>
+      {ads.map((ad) => (
+        <StyledAd key={ad.id}>
+          <AdCard
+            ad={ad}
+            handleEdit={() => handleEdit(ad.id)}
+            handleDelete={() => handleDelete(ad.id)}
+          />
+        </StyledAd>
+      ))}
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
     </Container>
   );
 };

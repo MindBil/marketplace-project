@@ -9,7 +9,10 @@ import { UserContext } from "../contexts/UserContext";
 import Button from "../components/Button";
 import { createAd, updateAd } from "../api/ads";
 import { HOME_PATH } from "../routes/const";
+<<<<<<< HEAD
 import { toast } from "react-toastify";
+=======
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
 
 const Container = styled.div`
   max-width: 500px;
@@ -57,15 +60,23 @@ const AdForm = ({ ad }) => {
   const isEditing = !!ad;
 
   const handleSubmit = async (values) => {
+<<<<<<< HEAD
     const action = isEditing ? "updated" : "created";
+=======
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
     try {
       const saveAd = isEditing ? updateAd : createAd;
       await saveAd(values);
       navigate(HOME_PATH);
+<<<<<<< HEAD
       toast.success(`Ad ${action} successfully`);
     } catch (error) {
       console.error(error);
       toast.error(`Ad was not ${action}. Try again later`);
+=======
+    } catch (error) {
+      console.error(error);
+>>>>>>> 71b272b361af82e3bbc17459238f99a472a15c39
     }
   };
 
